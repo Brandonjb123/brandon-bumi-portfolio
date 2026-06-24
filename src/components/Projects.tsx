@@ -4,29 +4,35 @@ import { ExternalLink, Bot, BarChart3, Globe } from 'lucide-react'
 const projects = [
   {
     title: 'Bhumi AI Agent',
-    description: 'Multi-model autonomous AI assistant — live and working, not just a notebook demo. Built with orchestration logic and tool-calling.',
-    tech: ['Python', 'LangChain', 'Groq', 'Streamlit'],
+    description:
+      'Multi-model autonomous AI assistant — live and working, not just a notebook demo. Built with orchestration logic and tool-calling.',
+    tech: ['Python', 'LangChain', 'LLM APIs', 'Streamlit'],
     status: '🟢 Live',
     link: 'https://bhumi-ai-agent-c3wmavfhyhnadhlkbbfneh.streamlit.app/',
-    icon: <Bot className="w-8 h-8 text-neon-cyan" />,
+    image: '/images/project-bhumi.jpg',
+    fallbackIcon: <Bot className="w-8 h-8 text-neon-cyan" />,
     gradient: 'from-neon-cyan/20 to-transparent',
   },
   {
     title: 'AI Trading Assist',
-    description: 'Autonomous Telegram bot delivering real-time trading signals and market analysis.',
+    description:
+      'Autonomous Telegram bot delivering real-time trading signals and market analysis.',
     tech: ['Python', 'Telegram Bot API', 'LLM APIs'],
     status: '🟢 Live (Beta)',
     link: 'https://t.me/crypto_prime_assistant_bot',
-    icon: <BarChart3 className="w-8 h-8 text-neon-purple" />,
+    image: '/images/project-trading.jpg',
+    fallbackIcon: <BarChart3 className="w-8 h-8 text-neon-purple" />,
     gradient: 'from-neon-purple/20 to-transparent',
   },
   {
     title: 'Golden Wisata',
-    description: 'Production tourism platform — full frontend build deployed to production.',
+    description:
+      'Production tourism platform — full frontend build deployed to production.',
     tech: ['React.js', 'Vue.js', 'Tailwind CSS'],
     status: '🟢 Live (Frontend)',
     link: 'https://golden-wisata.vercel.app',
-    icon: <Globe className="w-8 h-8 text-white" />,
+    image: '/images/project-wisata.jpg',
+    fallbackIcon: <Globe className="w-8 h-8 text-white" />,
     gradient: 'from-white/5 to-transparent',
   },
 ]
@@ -80,8 +86,26 @@ export default function Projects() {
               }}
             >
               {/* Preview Area */}
-              <div className={`relative h-40 bg-gradient-to-b ${project.gradient} flex items-center justify-center`}>
-                {project.icon}
+              <div
+                className={`relative h-40 bg-gradient-to-b ${project.gradient} flex items-center justify-center overflow-hidden`}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  loading="lazy"
+                  onError={(e) => {
+                    // Fallback ke ikon jika gambar tidak ditemukan
+                    e.currentTarget.style.display = 'none'
+                    const fallback = e.currentTarget.nextElementSibling as HTMLElement | null
+                    if (fallback) fallback.style.display = 'flex'
+                  }}
+                />
+                {/* Fallback icon (tersembunyi jika gambar ada) */}
+                <div className="absolute inset-0 items-center justify-center hidden">
+                  {project.fallbackIcon}
+                </div>
+                {/* Overlay hover */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <ExternalLink className="w-6 h-6 text-neon-cyan" />
                 </div>

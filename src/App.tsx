@@ -1,6 +1,8 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Stats from './components/Stats'
 import About from './components/About'
+import Experience from './components/Experience'
 import TechStack from './components/TechStack'
 import Projects from './components/Projects'
 import Certifications from './components/Certifications'
@@ -17,7 +19,9 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <Stats />
         <About />
+        <Experience />
         <TechStack />
         <Projects />
         <Certifications />

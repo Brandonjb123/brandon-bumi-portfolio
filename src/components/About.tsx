@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 
 const paragraphs = [
-  `2 years into freelance frontend development — React, Vue, Node.js, the MERN stack — before I made the call to go all-in on AI Engineering.`,
-  `Built a handful of production sites along the way, including Golden Wisata (tourism) and Rich Farm (investment platform), through Upwork and Rubyxoft.`,
-  `These days I'm deep in Python, LangChain, and LLM APIs, building autonomous AI agents. Bhumi AI Agent is the project I'm most proud of so far — a multi-model AI assistant, live and actually working, not just a notebook demo.`,
-  `Still early in this AI chapter, but the fullstack background turned out to be a real advantage — most of what makes an agent useful isn't the model, it's everything you build around it.`,
+  `Currently building things that actually work in production — not just demos.`,
+  `Started in web engineering — React, Vue, Node.js, the MERN stack — delivering production platforms for real clients through Upwork and Rubyxoft. Golden Wisata and Rich Farm weren't side projects. They were client work, shipped and live.`,
+  `Made the deliberate call to go deep into AI Engineering. These days I architect autonomous agents, integrate LLM APIs, and build systems that reason and act — not just respond. Bhumi AI Agent is the clearest proof of that: multi-model, production-deployed, actually useful.`,
+  `The fullstack background isn't a footnote. It's what separates the AI work I do from someone who only knows how to call an API. I understand the full system — from model to interface.`,
 ]
 
 export default function About() {
@@ -36,23 +36,27 @@ export default function About() {
             },
           }}
         >
-          {paragraphs.map((text, i) => (
-            <motion.p
-              key={i}
-              className="text-white/80 text-base md:text-lg leading-relaxed mb-6"
-              variants={{
-                hidden: { opacity: 0, y: 40, scale: 0.96 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: { duration: 0.6, ease: 'easeOut' },
-                },
-              }}
-            >
-              {text}
-            </motion.p>
-          ))}
+  {paragraphs.map((text, i) => (
+  <motion.p
+    key={i}
+    className={`leading-relaxed mb-6 ${
+      i === 0
+        ? 'text-lg md:text-xl text-neon-cyan font-medium'
+        : 'text-white/80 text-base md:text-lg'
+    }`}
+    variants={{
+      hidden: { opacity: 0, y: 40, scale: 0.96 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { duration: 0.6, ease: 'easeOut' },
+      },
+    }}
+  >
+    {text}
+  </motion.p>
+))}
         </motion.div>
       </div>
     </section>

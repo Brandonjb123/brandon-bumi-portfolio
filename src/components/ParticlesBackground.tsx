@@ -3,7 +3,6 @@ import ParticlesComponent from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
 import type { Engine } from '@tsparticles/engine'
 
-// Casting to any untuk menghindari error tipe prop 'init'
 const Particles = ParticlesComponent as any
 
 export default function ParticlesBackground() {
@@ -21,21 +20,21 @@ export default function ParticlesBackground() {
         background: { color: 'transparent' },
         fpsLimit: 60,
         particles: {
-          number: { value: 60, density: { enable: true } },
+          number: { value: 120, density: { enable: true } },
           color: { value: ['#00f0ff', '#b400ff'] },
           shape: { type: 'circle' },
-          opacity: { value: 0.3, random: true },
-          size: { value: 2, random: true },
+          opacity: { value: 0.4, random: true },
+          size: { value: 2.5, random: true },
           links: {
             enable: true,
-            distance: 150,
+            distance: 130,
             color: '#00f0ff',
-            opacity: 0.15,
+            opacity: 0.25,
             width: 1,
           },
           move: {
             enable: true,
-            speed: 0.8,
+            speed: 0.9,
             direction: 'none',
             random: true,
             straight: false,
@@ -47,7 +46,7 @@ export default function ParticlesBackground() {
             onHover: { enable: true, mode: 'repulse' },
           },
           modes: {
-            repulse: { distance: 100, duration: 0.4 },
+            repulse: { distance: 120, duration: 0.4 },
           },
         },
         detectRetina: true,
