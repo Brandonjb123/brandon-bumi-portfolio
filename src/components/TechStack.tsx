@@ -15,6 +15,10 @@ const aiSkills = [
   { name: 'Docker', icon: 'devicon-docker-plain colored' },
   { name: 'AI Agents', initial: { text: 'AA', color: '#00ff88' } },
   { name: 'Redis', icon: 'devicon-redis-plain colored' },
+  // ----- TIGA BARU -----
+  { name: 'REST APIs', initial: { text: 'API', color: '#00ff88' } },
+  { name: 'n8n', initial: { text: 'N8N', color: '#ff6b35' } },
+  { name: 'Workflow Automation', initial: { text: 'WF', color: '#a855f7' } },
 ]
 
 // ----- DATA SKILL FULLSTACK FOUNDATION -----
