@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, Bot, BarChart3, Globe } from 'lucide-react'
+import { ExternalLink, Bot, BarChart3, Globe, Sparkles } from 'lucide-react'
 
 const projects = [
   {
     title: 'Bhumi AI Agent',
     description:
-      'Multi-model autonomous AI assistant — live and working, not just a notebook demo. Built with orchestration logic and tool-calling.',
+      'Multi-model autonomous AI assistant with RAG capabilities. Supports document Q&A, conversation memory, streaming responses, and intelligent tool usage. Built with Python, LangChain, and Groq API. Live in production.',
     tech: ['Python', 'LangChain', 'LLM APIs', 'Streamlit'],
     status: '🟢 Live',
     link: 'https://bhumi-ai-agent-c3wmavfhyhnadhlkbbfneh.streamlit.app/',
@@ -16,7 +16,7 @@ const projects = [
   {
     title: 'AI Trading Assist',
     description:
-      'Autonomous Telegram bot delivering real-time trading signals and market analysis.',
+      'Autonomous Telegram bot serving an active crypto trading community. Delivers real-time market insights, trading signals, and automated responses powered by LLM APIs.',
     tech: ['Python', 'Telegram Bot API', 'LLM APIs'],
     status: '🟢 Live (Beta)',
     link: 'https://t.me/crypto_prime_assistant_bot',
@@ -27,7 +27,7 @@ const projects = [
   {
     title: 'Golden Wisata',
     description:
-      'Production tourism platform — full frontend build deployed to production.',
+      'Production tourism platform built for a real client. Features interactive maps, multi-step booking flow, multi-language support (ID/EN), dark mode, and persistent cart. Full frontend deployed to production.',
     tech: ['React.js', 'Vue.js', 'Tailwind CSS'],
     status: '🟢 Live (Frontend)',
     link: 'https://golden-wisata.vercel.app',
@@ -35,13 +35,34 @@ const projects = [
     fallbackIcon: <Globe className="w-8 h-8 text-white" />,
     gradient: 'from-white/5 to-transparent',
   },
+  {
+    title: 'Sera AI',
+    description:
+      'RAG-based customer service chatbot for e-commerce businesses. Admin uploads documents and the chatbot answers customer queries based on those documents. Built with FastAPI, ChromaDB, and Groq API.',
+    tech: ['Python', 'FastAPI', 'LangChain', 'ChromaDB', 'Groq API', 'React', 'Railway'],
+    status: '🟢 Live',
+    link: 'https://sera-ai-two.vercel.app',
+    image: '/images/project-sera.jpg',
+    fallbackIcon: <Bot className="w-8 h-8 text-neon-cyan" />,
+    gradient: 'from-neon-cyan/20 to-transparent',
+  },
+  {
+    title: 'Lumio',
+    description:
+      'AI-powered content generator dashboard for content creators and businesses. Generate Instagram captions, email marketing, blog posts, and product descriptions. Features JWT auth, content history, and PostgreSQL storage.',
+    tech: ['Python', 'FastAPI', 'PostgreSQL', 'Groq API', 'React', 'TypeScript', 'Railway'],
+    status: '🟢 Live',
+    link: 'https://lumio-six-topaz.vercel.app',
+    image: '/images/project-lumio.jpg',
+    fallbackIcon: <Sparkles className="w-8 h-8 text-neon-purple" />,
+    gradient: 'from-neon-purple/20 to-transparent',
+  },
 ]
 
 export default function Projects() {
   return (
     <section id="projects" className="py-24 px-4">
       <div className="max-w-5xl mx-auto">
-        {/* Judul Section */}
         <motion.h2
           className="text-3xl md:text-4xl font-bold font-mono text-neon-cyan mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -53,7 +74,6 @@ export default function Projects() {
           <span className="block w-16 h-0.5 bg-neon-cyan/40 mt-3" />
         </motion.h2>
 
-        {/* Grid Cards */}
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           initial="hidden"
@@ -63,7 +83,7 @@ export default function Projects() {
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
-              transition: { staggerChildren: 0.2 },
+              transition: { staggerChildren: 0.15 },
             },
           }}
         >
@@ -85,7 +105,6 @@ export default function Projects() {
                 transition: { duration: 0.3 },
               }}
             >
-              {/* Preview Area */}
               <div
                 className={`relative h-40 bg-gradient-to-b ${project.gradient} flex items-center justify-center overflow-hidden`}
               >
@@ -95,23 +114,19 @@ export default function Projects() {
                   className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   loading="lazy"
                   onError={(e) => {
-                    // Fallback ke ikon jika gambar tidak ditemukan
                     e.currentTarget.style.display = 'none'
                     const fallback = e.currentTarget.nextElementSibling as HTMLElement | null
                     if (fallback) fallback.style.display = 'flex'
                   }}
                 />
-                {/* Fallback icon (tersembunyi jika gambar ada) */}
                 <div className="absolute inset-0 items-center justify-center hidden">
                   {project.fallbackIcon}
                 </div>
-                {/* Overlay hover */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <ExternalLink className="w-6 h-6 text-neon-cyan" />
                 </div>
               </div>
 
-              {/* Konten Card */}
               <div className="p-5">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-lg font-semibold text-white group-hover:text-neon-cyan transition-colors duration-300">
@@ -126,7 +141,6 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                {/* Tech Badges per project — stagger animation */}
                 <motion.div
                   className="flex flex-wrap gap-2"
                   initial="hidden"

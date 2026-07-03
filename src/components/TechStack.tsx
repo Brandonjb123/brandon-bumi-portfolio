@@ -1,21 +1,40 @@
 import { motion } from 'framer-motion'
 
+const aiSkills = [
+  { name: 'Python', icon: 'devicon-python-plain colored' },
+  { name: 'FastAPI', icon: 'devicon-fastapi-plain colored' },
+  { name: 'LangChain', icon: null },
+  { name: 'LLM APIs', icon: null },
+  { name: 'RAG', icon: null },
+  { name: 'Prompt Engineering', icon: null },
+  { name: 'Agentic AI', icon: null },
+  { name: 'n8n', icon: null },
+  { name: 'Vector Database', icon: null },
+  { name: 'PostgreSQL', icon: 'devicon-postgresql-plain colored' },
+]
+
+const fullstackSkills = [
+  { name: 'React.js', icon: 'devicon-react-original colored' },
+  { name: 'Vue.js', icon: 'devicon-vuejs-plain colored' },
+  { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
+  { name: 'Express.js', icon: 'devicon-express-original colored' },
+  { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
+  { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
+  { name: 'Tailwind CSS', icon: 'devicon-tailwindcss-original colored' },
+  { name: 'Git', icon: 'devicon-git-plain colored' },
+  { name: 'Zustand', icon: null },
+]
+
 const skillCategories = [
   {
     title: 'AI Engineering',
-    hoverColor: 'hover:border-neon-cyan/60 hover:bg-neon-cyan/[0.05] hover:text-neon-cyan hover:shadow-[0_0_20px_rgba(0,240,255,0.3)]',
-    skills: [
-      'Python', 'LangChain', 'LLM APIs', 'FastAPI', 'RAG',
-      'Prompt Engineering', 'Agentic AI', 'n8n', 'Vector Database',
-    ],
+    hoverGlow: 'hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:border-neon-cyan/60',
+    skills: aiSkills,
   },
   {
     title: 'Fullstack Foundation',
-    hoverColor: 'hover:border-neon-purple/60 hover:bg-neon-purple/[0.05] hover:text-neon-purple hover:shadow-[0_0_20px_rgba(180,0,255,0.3)]',
-    skills: [
-      'React.js', 'Vue.js', 'Node.js', 'Express.js',
-      'JavaScript', 'TypeScript', 'Tailwind CSS', 'Git',
-    ],
+    hoverGlow: 'hover:shadow-[0_0_20px_rgba(180,0,255,0.3)] hover:border-neon-purple/60',
+    skills: fullstackSkills,
   },
 ]
 
@@ -45,28 +64,39 @@ export default function TechStack() {
                 hidden: { opacity: 0 },
                 visible: {
                   opacity: 1,
-                  transition: { staggerChildren: 0.1, delayChildren: catIndex * 0.2 },
+                  transition: { staggerChildren: 0.08, delayChildren: catIndex * 0.2 },
                 },
               }}
             >
-              <h3 className="text-lg font-semibold font-mono text-white/60 mb-4 uppercase tracking-wide">
+              <h3 className="text-lg font-semibold font-mono text-white/60 mb-6 uppercase tracking-wide">
                 {category.title}
               </h3>
-              <div className="flex flex-wrap gap-3">
+
+              <div className="flex flex-wrap gap-4">
                 {category.skills.map((skill) => (
-                  <motion.span
-                    key={skill}
-                    className={`px-4 py-2 border border-white/10 rounded-full text-sm font-mono text-white/80 bg-white/[0.02] cursor-default
-                               ${category.hoverColor} hover:scale-110 transition-all duration-300`}
+                  <motion.div
+                    key={skill.name}
+                    className={`flex flex-col items-center gap-2 p-3 border border-white/10 rounded-xl bg-white/[0.02] min-w-[90px]
+                               transition-all duration-300 cursor-default
+                               ${category.hoverGlow} hover:scale-110 hover:bg-white/[0.04]`}
                     variants={{
-                      hidden: { opacity: 0, scale: 0.85 },
+                      hidden: { opacity: 0, scale: 0.8 },
                       visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } },
                     }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {skill}
-                  </motion.span>
+                    {skill.icon ? (
+                      <i className={`${skill.icon} text-2xl`} />
+                    ) : (
+                      <span className="text-xs font-mono text-neon-cyan/80 text-center leading-tight">
+                        {skill.name}
+                      </span>
+                    )}
+                    <span className="text-[10px] font-mono text-white/50 text-center">
+                      {skill.name}
+                    </span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

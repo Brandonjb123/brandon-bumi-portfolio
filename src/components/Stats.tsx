@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 
 const stats = [
   { target: 2, suffix: '+', label: 'Years of Engineering Experience' },
-  { target: 3, suffix: '', label: 'Projects Live in Production' },
-  { target: 2, suffix: '', label: 'AI Agents Deployed' },
-  { target: 10, suffix: '+', label: 'Technologies Mastered' },
+  { target: 5, suffix: '', label: 'Projects Live in Production' },
+  { target: 3, suffix: '', label: 'AI Agents Deployed' },
+  { target: 15, suffix: '+', label: 'Technologies Mastered' },
 ]
 
 function AnimatedCounter({
