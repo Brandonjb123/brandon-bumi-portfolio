@@ -1,28 +1,33 @@
 import { motion } from 'framer-motion'
 
+// ----- DATA SKILL AI ENGINEERING -----
 const aiSkills = [
   { name: 'Python', icon: 'devicon-python-plain colored' },
+  { name: 'LangChain', initial: { text: 'LC', color: '#00d977' } },
+  { name: 'LangGraph', initial: { text: 'LG', color: '#00f0ff' } },
+  { name: 'LLM APIs', initial: { text: 'LLM', color: '#ffd700' } },
   { name: 'FastAPI', icon: 'devicon-fastapi-plain colored' },
-  { name: 'LangChain', icon: null },
-  { name: 'LLM APIs', icon: null },
-  { name: 'RAG', icon: null },
-  { name: 'Prompt Engineering', icon: null },
-  { name: 'Agentic AI', icon: null },
-  { name: 'n8n', icon: null },
-  { name: 'Vector Database', icon: null },
+  { name: 'RAG', initial: { text: 'RAG', color: '#ff6b35' } },
+  { name: 'Prompt Engineering', initial: { text: 'PE', color: '#b400ff' } },
+  { name: 'ChromaDB', initial: { text: 'CD', color: '#ff0080' } },
+  { name: 'Pinecone', initial: { text: 'PC', color: '#6c63ff' } },
   { name: 'PostgreSQL', icon: 'devicon-postgresql-plain colored' },
+  { name: 'Docker', icon: 'devicon-docker-plain colored' },
+  { name: 'AI Agents', initial: { text: 'AA', color: '#00ff88' } },
+  { name: 'Redis', icon: 'devicon-redis-plain colored' },
 ]
 
+// ----- DATA SKILL FULLSTACK FOUNDATION -----
 const fullstackSkills = [
   { name: 'React.js', icon: 'devicon-react-original colored' },
   { name: 'Vue.js', icon: 'devicon-vuejs-plain colored' },
   { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
-  { name: 'Express.js', icon: 'devicon-express-original colored' },
-  { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
   { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
+  { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
   { name: 'Tailwind CSS', icon: 'devicon-tailwindcss-original colored' },
+  { name: 'Zustand', initial: { text: 'ZS', color: '#00b4d8' } },
   { name: 'Git', icon: 'devicon-git-plain colored' },
-  { name: 'Zustand', icon: null },
+  { name: 'CI/CD', initial: { text: '⚙️', color: '#ffffff' } },
 ]
 
 const skillCategories = [
@@ -38,6 +43,50 @@ const skillCategories = [
   },
 ]
 
+// ----- KOMPONEN CARD SKILL -----
+function SkillCard({
+  name,
+  icon,
+  initial,
+  hoverGlow,
+}: {
+  name: string
+  icon?: string | null
+  initial?: { text: string; color: string }
+  hoverGlow: string
+}) {
+  return (
+    <motion.div
+      className={`flex flex-col items-center gap-2 p-3 border border-white/10 rounded-xl bg-white/[0.02] min-w-[90px]
+                 transition-all duration-300 cursor-default
+                 ${hoverGlow} hover:scale-110 hover:bg-white/[0.04]`}
+      variants={{
+        hidden: { opacity: 0, scale: 0.8 },
+        visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } },
+      }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {initial ? (
+        <div
+          className="w-10 h-10 rounded-xl border-[1.5px] flex items-center justify-center font-mono font-bold text-sm"
+          style={{
+            borderColor: initial.color,
+            color: initial.color,
+            backgroundColor: 'rgba(10,10,10,0.8)',
+          }}
+        >
+          {initial.text}
+        </div>
+      ) : icon ? (
+        <i className={`${icon} text-2xl`} />
+      ) : null}
+      <span className="text-[10px] font-mono text-white/50 text-center">{name}</span>
+    </motion.div>
+  )
+}
+
+// ----- KOMPONEN UTAMA TECH STACK -----
 export default function TechStack() {
   return (
     <section id="tech" className="py-24 px-4">
@@ -74,29 +123,13 @@ export default function TechStack() {
 
               <div className="flex flex-wrap gap-4">
                 {category.skills.map((skill) => (
-                  <motion.div
+                  <SkillCard
                     key={skill.name}
-                    className={`flex flex-col items-center gap-2 p-3 border border-white/10 rounded-xl bg-white/[0.02] min-w-[90px]
-                               transition-all duration-300 cursor-default
-                               ${category.hoverGlow} hover:scale-110 hover:bg-white/[0.04]`}
-                    variants={{
-                      hidden: { opacity: 0, scale: 0.8 },
-                      visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } },
-                    }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {skill.icon ? (
-                      <i className={`${skill.icon} text-2xl`} />
-                    ) : (
-                      <span className="text-xs font-mono text-neon-cyan/80 text-center leading-tight">
-                        {skill.name}
-                      </span>
-                    )}
-                    <span className="text-[10px] font-mono text-white/50 text-center">
-                      {skill.name}
-                    </span>
-                  </motion.div>
+                    name={skill.name}
+                    icon={'icon' in skill ? skill.icon : undefined}
+                    initial={'initial' in skill ? skill.initial : undefined}
+                    hoverGlow={category.hoverGlow}
+                  />
                 ))}
               </div>
             </motion.div>
