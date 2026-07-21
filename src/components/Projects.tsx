@@ -1,61 +1,57 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, Bot, BarChart3, Globe, Sparkles } from 'lucide-react'
+import { ExternalLink, Bot, Sparkles } from 'lucide-react'
 
 const projects = [
   {
     title: 'Bhumi AI Agent',
     description:
-      'Multi-model autonomous AI assistant with RAG capabilities. Supports document Q&A, conversation memory, streaming responses, and intelligent tool usage. Built with Python, LangChain, and Groq API. Live in production.',
+      'Multi-model autonomous AI assistant with RAG capabilities. Supports document Q&A, conversation memory, streaming responses, and intelligent tool usage.',
+    highlights: [
+      'Multi-LLM Support',
+      'Retrieval-Augmented Generation',
+      'Streaming Responses',
+    ],
     tech: ['Python', 'LangChain', 'LLM APIs', 'Streamlit'],
-    status: '🟢 Live',
+    status: 'Production',
+    statusColor: 'bg-green-400/10 text-green-400 border-green-400/30',
     link: 'https://bhumi-ai-agent-c3wmavfhyhnadhlkbbfneh.streamlit.app/',
     image: '/images/project-bhumi.jpg',
     fallbackIcon: <Bot className="w-8 h-8 text-neon-cyan" />,
     gradient: 'from-neon-cyan/20 to-transparent',
   },
   {
-    title: 'AI Trading Assist',
-    description:
-      'Autonomous Telegram bot serving an active crypto trading community. Delivers real-time market insights, trading signals, and automated responses powered by LLM APIs.',
-    tech: ['Python', 'Telegram Bot API', 'LLM APIs'],
-    status: '🟢 Live (Beta)',
-    link: 'https://t.me/crypto_prime_assistant_bot',
-    image: '/images/project-trading.jpg',
-    fallbackIcon: <BarChart3 className="w-8 h-8 text-neon-purple" />,
-    gradient: 'from-neon-purple/20 to-transparent',
-  },
-  {
-    title: 'Golden Wisata',
-    description:
-      'Production tourism platform built for a real client. Features interactive maps, multi-step booking flow, multi-language support (ID/EN), dark mode, and persistent cart. Full frontend deployed to production.',
-    tech: ['React.js', 'Vue.js', 'Tailwind CSS'],
-    status: '🟢 Live (Frontend)',
-    link: 'https://golden-wisata.vercel.app',
-    image: '/images/project-wisata.jpg',
-    fallbackIcon: <Globe className="w-8 h-8 text-white" />,
-    gradient: 'from-white/5 to-transparent',
-  },
-  {
-    title: 'Sera AI',
-    description:
-      'RAG-based customer service chatbot for e-commerce businesses. Admin uploads documents and the chatbot answers customer queries based on those documents. Built with FastAPI, ChromaDB, and Groq API.',
-    tech: ['Python', 'FastAPI', 'LangChain', 'ChromaDB', 'Groq API', 'React', 'Railway'],
-    status: '🟢 Live',
-    link: 'https://sera-ai-two.vercel.app',
-    image: '/images/project-sera.jpg',
-    fallbackIcon: <Bot className="w-8 h-8 text-neon-cyan" />,
-    gradient: 'from-neon-cyan/20 to-transparent',
-  },
-  {
     title: 'Lumio',
     description:
-      'AI-powered content generator dashboard for content creators and businesses. Generate Instagram captions, email marketing, blog posts, and product descriptions. Features JWT auth, content history, and PostgreSQL storage.',
+      'AI-powered content generator dashboard for content creators and businesses. Features JWT auth, content history, and PostgreSQL storage.',
+    highlights: [
+      'JWT Authentication',
+      'PostgreSQL Database',
+      'CI/CD Pipeline',
+    ],
     tech: ['Python', 'FastAPI', 'PostgreSQL', 'Groq API', 'React', 'TypeScript', 'Railway'],
-    status: '🟢 Live',
+    status: 'Production',
+    statusColor: 'bg-green-400/10 text-green-400 border-green-400/30',
     link: 'https://lumio-six-topaz.vercel.app',
     image: '/images/project-lumio.jpg',
     fallbackIcon: <Sparkles className="w-8 h-8 text-neon-purple" />,
     gradient: 'from-neon-purple/20 to-transparent',
+  },
+  {
+    title: 'Sera AI',
+    description:
+      'RAG-based customer service chatbot for e-commerce businesses. Admin uploads documents and the chatbot answers customer queries.',
+    highlights: [
+      'Multi-Tenant Architecture',
+      'Embeddable Widget',
+      'Semantic Search',
+    ],
+    tech: ['Python', 'FastAPI', 'LangChain', 'ChromaDB', 'Groq API', 'React', 'Railway'],
+    status: 'Production',
+    statusColor: 'bg-green-400/10 text-green-400 border-green-400/30',
+    link: 'https://sera-ai-two.vercel.app',
+    image: '/images/project-sera.jpg',
+    fallbackIcon: <Bot className="w-8 h-8 text-neon-cyan" />,
+    gradient: 'from-neon-cyan/20 to-transparent',
   },
 ]
 
@@ -132,7 +128,7 @@ export default function Projects() {
                   <h3 className="text-lg font-semibold text-white group-hover:text-neon-cyan transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <span className="text-xs font-mono text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">
+                  <span className={`text-xs font-mono rounded-full px-2 py-0.5 border ${project.statusColor}`}>
                     {project.status}
                   </span>
                 </div>
@@ -141,6 +137,17 @@ export default function Projects() {
                   {project.description}
                 </p>
 
+                {/* Engineering Highlights */}
+                <div className="mb-4 space-y-1">
+                  {project.highlights.map((h) => (
+                    <div key={h} className="flex items-center gap-2 text-xs text-white/50">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan/60" />
+                      {h}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tech Badges */}
                 <motion.div
                   className="flex flex-wrap gap-2"
                   initial="hidden"
