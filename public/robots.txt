@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brandon-bumi-portfolio.vercel.app/sitemap.xml

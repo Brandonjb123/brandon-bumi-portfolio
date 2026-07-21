@@ -154,4 +154,8 @@ body {
   html {
     @apply font-sans;
     }
+  *:focus-visible {
+    @apply ring-2 ring-neon-cyan ring-offset-2 ring-offset-black outline-none;
+  }  
 }
+

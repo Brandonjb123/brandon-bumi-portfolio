@@ -1,34 +1,56 @@
+import { lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
-import FeaturedProject from './components/FeaturedProject'
-import Projects from './components/Projects'
-import TechStack from './components/TechStack'
-import Experience from './components/Experience'
-import Philosophy from './components/Philosophy'
-import About from './components/About'
-import Certifications from './components/Certifications'
-import Contact from './components/Contact'
 import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
+import SkipLink from './components/SkipLink'
+import Skeleton from './components/Skeleton'
+
+// Lazy load components below the fold
+const FeaturedProject = lazy(() => import('./components/FeaturedProject'))
+const Projects = lazy(() => import('./components/Projects'))
+const TechStack = lazy(() => import('./components/TechStack'))
+const Experience = lazy(() => import('./components/Experience'))
+const Philosophy = lazy(() => import('./components/Philosophy'))
+const About = lazy(() => import('./components/About'))
+const Certifications = lazy(() => import('./components/Certifications'))
+const Contact = lazy(() => import('./components/Contact'))
 
 function App() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <SkipLink />
       <CustomCursor />
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <Stats />
-        <FeaturedProject />
-        <Projects />
-        <TechStack />
-        <Experience />
-        <Philosophy />
-        <About />
-        <Certifications />
-        <Contact />
+        <Suspense fallback={<Skeleton className="h-96" />}>
+          <FeaturedProject />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-96" />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-64" />}>
+          <TechStack />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-64" />}>
+          <Experience />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-64" />}>
+          <Philosophy />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-64" />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-32" />}>
+          <Certifications />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="h-32" />}>
+          <Contact />
+        </Suspense>
       </main>
     </div>
   )
