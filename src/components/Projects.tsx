@@ -145,9 +145,9 @@ function ProjectCard({ project }: { project: any }) {
           visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } },
         }}
         whileHover={{ y: -6, boxShadow: '0 0 25px rgba(0,240,255,0.15)' }}
-        className="border border-white/10 rounded-xl overflow-hidden bg-white/[0.02] hover:border-neon-cyan/30 transition-all duration-500"
+        className="border border-white/10 rounded-xl overflow-hidden bg-white/[0.02] hover:border-neon-cyan/30 transition-all duration-500 h-full flex flex-col"
       >
-        <div className="relative h-40 bg-white/[0.02] flex items-center justify-center">
+        <div className="relative h-40 bg-white/[0.02] flex items-center justify-center shrink-0">
           <img
             src={project.image}
             alt={project.title}
@@ -159,7 +159,7 @@ function ProjectCard({ project }: { project: any }) {
           </div>
         </div>
 
-        <div className="p-5 space-y-3">
+        <div className="p-5 space-y-3 flex-1 flex flex-col">
           <h3 className="text-lg font-bold font-mono text-white">{project.title}</h3>
 
           <div>
@@ -188,7 +188,7 @@ function ProjectCard({ project }: { project: any }) {
             <ArchitectureFlow nodes={project.architecture} />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-auto pt-4">
             <button
               onClick={() => setIsModalOpen(true)}
               className="px-3 py-1.5 border border-white/20 text-white/70 font-mono text-xs rounded hover:border-neon-cyan/40 hover:text-neon-cyan transition-all"

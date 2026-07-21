@@ -170,10 +170,10 @@ function ProjectCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className={`border ${borderColor} rounded-xl overflow-hidden bg-white/[0.02] hover:shadow-[0_0_30px_${glowColor}] transition-all duration-500`}
+        className={`border ${borderColor} rounded-xl overflow-hidden bg-white/[0.02] hover:shadow-[0_0_30px_${glowColor}] transition-all duration-500 h-full flex flex-col`}
         whileHover={{ y: -4 }}
       >
-        <div className="relative h-48 bg-white/[0.02] flex items-center justify-center">
+        <div className="relative h-48 bg-white/[0.02] flex items-center justify-center shrink-0">
           <img
             src={image}
             alt={title}
@@ -190,7 +190,7 @@ function ProjectCard({
           )}
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-4 flex-1 flex flex-col">
           <h3 className="text-xl font-bold font-mono text-white">{title}</h3>
 
           <div>
@@ -219,7 +219,7 @@ function ProjectCard({
             <ArchitectureFlow nodes={architecture} />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-auto pt-4">
             <button
               onClick={() => setIsModalOpen(true)}
               className="px-4 py-2 border border-white/20 text-white/70 font-mono text-sm rounded hover:border-neon-cyan/40 hover:text-neon-cyan transition-all duration-300"
