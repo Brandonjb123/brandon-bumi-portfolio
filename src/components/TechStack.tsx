@@ -102,7 +102,7 @@ export default function TechStack() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          Tech Stack
+          Engineering Stack
           <span className="block w-16 h-0.5 bg-neon-cyan/40 mt-3" />
         </motion.h2>
 

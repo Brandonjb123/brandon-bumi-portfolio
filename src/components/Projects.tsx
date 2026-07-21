@@ -70,7 +70,7 @@ export default function Projects() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          Featured Projects
+          Selected Engineering Projects
           <span className="block w-16 h-0.5 bg-neon-cyan/40 mt-3" />
         </motion.h2>
 

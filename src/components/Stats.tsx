@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const stats = [
-  { target: 2, suffix: '+', label: 'Years of Engineering Experience' },
-  { target: 5, suffix: '', label: 'Projects Live in Production' },
-  { target: 3, suffix: '', label: 'AI Agents Deployed' },
-  { target: 15, suffix: '+', label: 'Technologies Mastered' },
+  { target: 5, suffix: '+', label: 'Production Systems' },
+  { target: 3, suffix: '', label: 'AI Agents' },
+  { target: 10, suffix: '+', label: 'API Integrations' },
+  { target: 20, suffix: '+', label: 'Technologies' },
 ]
 
 function AnimatedCounter({
@@ -26,7 +26,7 @@ function AnimatedCounter({
       return
     }
 
-    const duration = 1500 // ms
+    const duration = 1500
     const stepTime = 30
     const steps = duration / stepTime
     const increment = target / steps
@@ -70,16 +70,24 @@ export default function Stats() {
       { threshold: 0.4 }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
   return (
     <section id="stats" className="py-16 px-4" ref={ref}>
       <div className="max-w-5xl mx-auto">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold font-mono text-neon-cyan mb-12 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6 }}
+        >
+          Engineering Metrics
+          <span className="block w-16 h-0.5 bg-neon-cyan/40 mt-3 mx-auto" />
+        </motion.h2>
+
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           initial="hidden"
