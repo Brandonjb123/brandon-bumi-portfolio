@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-// SVG fallback icons (tanpa lucide-react)
+// SVG fallback icons
 const LinkedInIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -22,6 +22,24 @@ const GithubIcon = () => (
   </svg>
 )
 
+const GlobeIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+)
+
+const FileTextIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <polyline points="10 9 9 9 8 9" />
+  </svg>
+)
+
 const contacts = [
   {
     label: 'LinkedIn',
@@ -31,7 +49,7 @@ const contacts = [
   },
   {
     label: 'Email',
-    href: 'brandonbumi06@gmail.com',
+    href: 'mailto:brandonbumi@gmail.com',
     icon: <MailIcon />,
     color: 'hover:text-neon-purple hover:drop-shadow-[0_0_12px_rgba(180,0,255,0.6)]',
   },
@@ -40,6 +58,19 @@ const contacts = [
     href: 'https://github.com/Brandonjb123',
     icon: <GithubIcon />,
     color: 'hover:text-white hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]',
+  },
+  {
+    label: 'Portfolio',
+    href: 'https://brandon-bumi-portfolio.vercel.app',
+    icon: <GlobeIcon />,
+    color: 'hover:text-neon-cyan hover:drop-shadow-[0_0_12px_rgba(0,240,255,0.6)]',
+  },
+  {
+    label: 'Resume',
+    href: '/resume.pdf',
+    icon: <FileTextIcon />,
+    color: 'hover:text-neon-purple hover:drop-shadow-[0_0_12px_rgba(180,0,255,0.6)]',
+    download: 'Brandon_Jovan_Bumi_Resume.pdf',
   },
 ]
 
@@ -58,8 +89,35 @@ export default function Contact() {
           <span className="block w-16 h-0.5 bg-neon-cyan/40 mt-3 mx-auto" />
         </motion.h2>
 
+        {/* Recruiter CTA */}
         <motion.div
-          className="flex justify-center gap-8"
+          className="mb-10 text-center"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <p className="text-sm font-mono text-white/50 mb-3">Available for</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              'Production AI Systems Engineer',
+              'AI Engineer',
+              'AI Systems Engineer',
+              'AI Automation Engineer',
+              'Fullstack Engineer',
+            ].map((role) => (
+              <span
+                key={role}
+                className="px-3 py-1 text-xs font-mono border border-white/10 rounded-full text-white/60"
+              >
+                {role}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-wrap justify-center gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -68,23 +126,40 @@ export default function Contact() {
             visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
           }}
         >
-          {contacts.map((contact) => (
-            <motion.a
-              key={contact.label}
-              href={contact.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`p-4 border border-white/10 rounded-full text-white/70 transition-all duration-300 ${contact.color}`}
-              variants={{
-                hidden: { opacity: 0, scale: 0.8 },
-                visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
-              }}
-              whileHover={{ scale: 1.15, borderColor: 'rgba(0, 240, 255, 0.4)' }}
-              aria-label={contact.label}
-            >
-              {contact.icon}
-            </motion.a>
-          ))}
+          {contacts.map((contact) => {
+            const linkProps: any = {
+              href: contact.href,
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: `p-4 border border-white/10 rounded-full text-white/70 transition-all duration-300 ${contact.color}`,
+              'aria-label': contact.label,
+            }
+
+            if (contact.download) {
+              linkProps.download = contact.download
+            }
+
+            return (
+              <motion.a
+                key={contact.label}
+                {...linkProps}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    transition: { duration: 0.4 },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.15,
+                  borderColor: 'rgba(0, 240, 255, 0.4)',
+                }}
+              >
+                {contact.icon}
+              </motion.a>
+            )
+          })}
         </motion.div>
       </div>
     </section>

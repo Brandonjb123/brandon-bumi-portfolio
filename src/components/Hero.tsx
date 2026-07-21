@@ -127,9 +127,17 @@ export default function Hero() {
             </a>
             <a
               href="/resume.pdf"
+              download="Brandon_Jovan_Bumi_Resume.pdf"
               className="px-6 py-3 border border-neon-purple text-neon-purple font-mono rounded hover:bg-neon-purple/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.4)] transition-all duration-300 text-center"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => {
+                // Cek apakah file ada, jika tidak cegah download
+                fetch('/resume.pdf', { method: 'HEAD' }).catch(() => {
+                  e.preventDefault()
+                  alert('Resume file is not available yet.')
+                })
+              }}
             >
               Download Resume
             </a>

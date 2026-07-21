@@ -16,6 +16,7 @@ const Philosophy = lazy(() => import('./components/Philosophy'))
 const About = lazy(() => import('./components/About'))
 const Certifications = lazy(() => import('./components/Certifications'))
 const Contact = lazy(() => import('./components/Contact'))
+const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         </Suspense>
         <Suspense fallback={<Skeleton className="h-32" />}>
           <Contact />
+          <Footer />
         </Suspense>
       </main>
     </div>
