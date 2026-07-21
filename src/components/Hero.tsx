@@ -6,11 +6,12 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen md:min-h-screen flex items-center justify-center overflow-hidden px-4 py-20 md:py-0"
     >
+      {/* Backgrounds */}
       <ParticlesBackground />
-
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.06]"
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none opacity-[0.06]"
         style={{
           backgroundImage:
             'linear-gradient(rgba(0, 240, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.3) 1px, transparent 1px)',
@@ -26,9 +27,11 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16 px-4 max-w-5xl mx-auto">
+      {/* Konten utama */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-16 max-w-5xl mx-auto w-full">
+        {/* Foto Profil */}
         <motion.div
-          className="relative w-48 h-48 md:w-56 md:h-56 shrink-0"
+          className="relative w-36 h-36 md:w-56 md:h-56 shrink-0"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -42,7 +45,8 @@ export default function Hero() {
           />
         </motion.div>
 
-        <div className="text-center md:text-left">
+        {/* Teks */}
+        <div className="text-center md:text-left flex-1">
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-mono text-neon-cyan mb-2"
             initial={{ opacity: 0, y: 50, textShadow: '0 0 10px rgba(0,240,255,0.3)' }}
@@ -64,17 +68,17 @@ export default function Hero() {
             Brandon Jovan Bumi
           </motion.h1>
 
-          {/* Subheadline */}
           <motion.p
-            className="text-lg md:text-xl text-white/60 font-mono mb-4"
+            className="text-lg md:text-xl text-white/60 font-mono mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
             Production AI Systems Engineer
           </motion.p>
+
           <motion.p
-            className="text-sm md:text-base text-white/50 mb-6 max-w-md mx-auto md:mx-0"
+            className="text-sm md:text-base text-white/50 mb-4 max-w-md mx-auto md:mx-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
@@ -83,7 +87,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 font-mono mb-10 h-12"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 font-mono mb-8 h-10 md:h-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
@@ -117,13 +121,13 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="px-6 py-3 border border-neon-cyan text-neon-cyan font-mono rounded hover:bg-neon-cyan/10 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all duration-300"
+              className="px-6 py-3 border border-neon-cyan text-neon-cyan font-mono rounded hover:bg-neon-cyan/10 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all duration-300 text-center"
             >
               View My Work
             </a>
             <a
               href="/resume.pdf"
-              className="px-6 py-3 border border-neon-purple text-neon-purple font-mono rounded hover:bg-neon-purple/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.4)] transition-all duration-300"
+              className="px-6 py-3 border border-neon-purple text-neon-purple font-mono rounded hover:bg-neon-purple/10 hover:shadow-[0_0_20px_rgba(180,0,255,0.4)] transition-all duration-300 text-center"
               target="_blank"
               rel="noopener noreferrer"
             >
