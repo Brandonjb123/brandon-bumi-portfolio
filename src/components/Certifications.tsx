@@ -1,10 +1,35 @@
 import { motion } from 'framer-motion'
+import Badge from './Badge'
 
 const certifications = [
-  { title: 'Python 3 Course', org: 'Codecademy', year: '2026' },
-  { title: 'Front-End Engineer Career Path', org: 'Codecademy', year: '2022' },
-  { title: 'Learn React Course', org: 'Codecademy', year: '2022' },
-  { title: 'Fullstack JavaScript Developer', org: 'Mediocademy', year: '2020' },
+  {
+    title: 'The AI Engineer Course 2026: Complete AI Engineer Bootcamp',
+    org: '365 Careers (Udemy)',
+    year: '2026',
+    skills: 'Python • NLP • LLMs • Transformers • LangChain • Hugging Face • Vector Databases',
+    featured: true,
+    credentialUrl: 'https://www.udemy.com/certificate/placeholder', // Ganti dengan URL asli nanti
+  },
+  {
+    title: 'Python 3 Course',
+    org: 'Codecademy',
+    year: '2026',
+  },
+  {
+    title: 'Front-End Engineer Career Path',
+    org: 'Codecademy',
+    year: '2022',
+  },
+  {
+    title: 'Learn React Course',
+    org: 'Codecademy',
+    year: '2022',
+  },
+  {
+    title: 'Fullstack JavaScript Developer',
+    org: 'Mediocademy',
+    year: '2020',
+  },
 ]
 
 export default function Certifications() {
@@ -38,18 +63,43 @@ export default function Certifications() {
           {certifications.map((cert) => (
             <motion.div
               key={cert.title}
-              className="p-4 border border-white/10 rounded-lg flex justify-between items-center bg-white/[0.01]
-                         hover:border-neon-cyan/40 hover:bg-neon-cyan/[0.03] hover:shadow-[0_0_20px_rgba(0,240,255,0.1)] transition-all duration-300"
+              className={`p-4 border rounded-lg flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 bg-white/[0.01] transition-all duration-300
+                ${cert.featured
+                  ? 'border-neon-cyan/30 hover:border-neon-cyan/50 hover:shadow-[0_0_20px_rgba(0,240,255,0.15)]'
+                  : 'border-white/10 hover:border-neon-cyan/40 hover:shadow-[0_0_20px_rgba(0,240,255,0.1)]'
+                }`}
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
               }}
             >
-              <div>
-                <h3 className="text-white font-medium">{cert.title}</h3>
-                <p className="text-white/50 text-sm font-mono">{cert.org}</p>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <h3 className="text-white font-medium text-sm md:text-base">
+                    {cert.title}
+                  </h3>
+                  {cert.featured && (
+                    <Badge label="Featured" color="green" />
+                  )}
+                </div>
+                <p className="text-white/50 text-xs font-mono">{cert.org}</p>
+                {cert.skills && (
+                  <p className="text-white/40 text-xs mt-1 leading-relaxed">{cert.skills}</p>
+                )}
               </div>
-              <span className="text-neon-purple font-mono text-sm">{cert.year}</span>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="text-neon-purple font-mono text-xs sm:text-sm whitespace-nowrap">{cert.year}</span>
+                {cert.credentialUrl && (
+                  <a
+                    href={cert.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 text-xs font-mono rounded border border-neon-cyan/40 text-neon-cyan hover:bg-neon-cyan/10 hover:shadow-[0_0_12px_rgba(0,240,255,0.3)] transition-all duration-300 whitespace-nowrap"
+                  >
+                    View Credential
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </motion.div>
