@@ -3,7 +3,7 @@ import Badge from './Badge'
 
 const certifications = [
   {
-    title: 'The AI Engineer Course 2026: Complete AI Engineer Bootcamp',
+    title: '🎓 The AI Engineer Course 2026: Complete AI Engineer Bootcamp',
     org: '365 Careers (Udemy)',
     year: '2026',
     skills: 'Python • NLP • LLMs • Transformers • LangChain • Hugging Face • Vector Databases',
@@ -79,10 +79,12 @@ export default function Certifications() {
                     {cert.title}
                   </h3>
                   {cert.featured && (
-                    <Badge label="Featured" color="green" />
+                    <Badge label="Latest" color="green" />
                   )}
                 </div>
-                <p className="text-white/50 text-xs font-mono">{cert.org}</p>
+                <p className={`text-xs font-mono ${cert.featured ? 'text-white/70 font-medium' : 'text-white/50'}`}>
+                  {cert.org}
+                </p>
                 {cert.skills && (
                   <p className="text-white/40 text-xs mt-1 leading-relaxed">{cert.skills}</p>
                 )}
